@@ -8,6 +8,10 @@ const app = express()
 app.use(morgan())
 app.use(bodyParser())
 
+app.get('/', (req, res, next) => {
+  res.send({ method: 'get', body: req.body, params: req.params, query: req.query })
+})
+
 app.get((req, res, next) => {
   next({ status: 404, message: 'Page not found'})
 })
